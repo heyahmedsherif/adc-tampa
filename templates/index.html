@@ -726,7 +726,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 ADC Tampa - Arab American Anti-Discrimination Committee, Tampa Chapter</p>
+            <p>&copy; <span id="year"></span> ADC Tampa - Arab American Anti-Discrimination Committee, Tampa Chapter</p>
             <p style="margin-top: 0.5rem;">A chapter of the <a href="https://adc.org" target="_blank" rel="noopener">American-Arab Anti-Discrimination Committee</a></p>
         </div>
     </footer>
@@ -743,6 +743,9 @@
                 document.getElementById('navLinks').classList.remove('active');
             });
         });
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
