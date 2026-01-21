@@ -340,9 +340,99 @@
             opacity: 0.9;
         }
 
+        /* Latest News */
+        .latest-news {
+            background-color: var(--white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background-color: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .news-card.featured {
+            border-color: var(--primary-green);
+        }
+
+        .news-badge {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .news-card h3 {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-arabic {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .news-details {
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .news-details p {
+            margin: 0.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        .news-description {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .news-topics {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-topics li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .news-topics li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
         /* Get Involved */
         .get-involved {
-            background-color: var(--white);
+            background-color: var(--cream-dark);
         }
 
         .involvement-grid {
@@ -553,6 +643,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About ADC</a></li>
                 <li><a href="#tampa">Tampa Chapter</a></li>
+                <li><a href="#news">News & Events</a></li>
                 <li><a href="#involved">Get Involved</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -643,6 +734,34 @@
                     <p>Whether you're Arab American or simply committed to civil rights and cultural understanding, ADC Tampa welcomes you. Together, we can build a stronger, more inclusive Tampa Bay.</p>
                     <br>
                     <a href="#involved" class="btn btn-primary">Learn How to Get Involved</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="latest-news" id="news">
+        <div class="container">
+            <h2 class="section-title">Latest News & Events</h2>
+            <p class="section-subtitle">Stay updated with ADC Tampa's upcoming events and community initiatives</p>
+
+            <div class="news-grid">
+                <div class="news-card featured">
+                    <div class="news-badge">Upcoming Event</div>
+                    <h3>Community Wellness Workshop</h3>
+                    <p class="news-arabic">الصحة النفسية العامة</p>
+                    <div class="news-details">
+                        <p><strong>Date:</strong> Sunday, January 25, 2026</p>
+                        <p><strong>Time:</strong> 12:00 PM – 2:00 PM (EST)</p>
+                        <p><strong>Format:</strong> Online via Zoom</p>
+                    </div>
+                    <p class="news-description">Join us for an important workshop addressing the impacts of ongoing news of genocide, Islamophobia, and anti-Arab bias on the Arab community in Tampa.</p>
+                    <ul class="news-topics">
+                        <li>How discrimination affects daily life and overall wellness</li>
+                        <li>Emotional and psychological responses to bias</li>
+                        <li>Practical coping strategies for managing stress</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScsp3ANYXp_VtzuH8d5PD7i-FRXtFNpVg-PiPVSPsHOYf185g/viewform" class="btn btn-primary" target="_blank" rel="noopener">Register Now</a>
                 </div>
             </div>
         </div>
