@@ -549,7 +549,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo"><img src="logo.jpg" alt="ADC Tampa Logo">ADC <span>Tampa</span></a>
+            <a href="#" class="logo"><img src="{{ url_for('static', filename='logo.jpg') }}" alt="ADC Tampa Logo">ADC <span>Tampa</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About ADC</a></li>
                 <li><a href="#tampa">Tampa Chapter</a></li>
@@ -563,7 +563,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <img src="logo.jpg" alt="ADC Tampa Logo" class="hero-logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="ADC Tampa Logo" class="hero-logo">
             <h1>Arab American Anti-Discrimination Committee</h1>
             <p class="hero-subtitle">Tampa Bay Chapter</p>
             <p class="hero-tagline">Truly Arab, Fully American.</p>
