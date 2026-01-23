@@ -772,8 +772,8 @@
             <h2 class="section-title">Latest News & Events</h2>
             <p class="section-subtitle">Stay updated with ADC Tampa's upcoming events and community initiatives</p>
 
-            <div class="news-grid">
-                <div class="news-card featured">
+            <div class="news-grid" id="upcomingEvents">
+                <div class="news-card featured event-card" data-event-date="2026-01-25">
                     <div class="news-badge">Upcoming Event</div>
                     <h3>Community Wellness Workshop</h3>
                     <p class="news-arabic">الصحة النفسية العامة</p>
@@ -788,8 +788,15 @@
                         <li>Emotional and psychological responses to bias</li>
                         <li>Practical coping strategies for managing stress</li>
                     </ul>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScsp3ANYXp_VtzuH8d5PD7i-FRXtFNpVg-PiPVSPsHOYf185g/viewform" class="btn btn-primary" target="_blank" rel="noopener">Register Now</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScsp3ANYXp_VtzuH8d5PD7i-FRXtFNpVg-PiPVSPsHOYf185g/viewform" class="btn btn-primary event-register-btn" target="_blank" rel="noopener">Register Now</a>
                 </div>
+            </div>
+
+            <!-- Prior Events Section (hidden by default, shown by JS when there are past events) -->
+            <div id="priorEventsSection" style="display: none; margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 1.75rem;">Prior Events</h3>
+                <p class="section-subtitle">Past events hosted by ADC Tampa</p>
+                <div class="news-grid" id="priorEvents"></div>
             </div>
         </div>
     </section>
@@ -892,6 +899,62 @@
 
         // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Event management - move events to "Prior Events" 3 days after they occur
+        function manageEvents() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const eventCards = document.querySelectorAll('.event-card');
+            const upcomingGrid = document.getElementById('upcomingEvents');
+            const priorGrid = document.getElementById('priorEvents');
+            const priorSection = document.getElementById('priorEventsSection');
+
+            let hasUpcoming = false;
+            let hasPrior = false;
+
+            eventCards.forEach(card => {
+                const eventDateStr = card.getAttribute('data-event-date');
+                const eventDate = new Date(eventDateStr + 'T00:00:00');
+
+                // Calculate days since event
+                const diffTime = today - eventDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays > 3) {
+                    // Event is more than 3 days past - move to prior events
+                    const badge = card.querySelector('.news-badge');
+                    if (badge) badge.textContent = 'Past Event';
+                    card.classList.remove('featured');
+
+                    // Update or hide register button
+                    const registerBtn = card.querySelector('.event-register-btn');
+                    if (registerBtn) {
+                        registerBtn.textContent = 'View Details';
+                        registerBtn.classList.remove('btn-primary');
+                        registerBtn.classList.add('btn-green');
+                    }
+
+                    priorGrid.appendChild(card);
+                    hasPrior = true;
+                } else {
+                    hasUpcoming = true;
+                }
+            });
+
+            // Show/hide sections based on content
+            if (hasPrior) {
+                priorSection.style.display = 'block';
+            }
+
+            // If no upcoming events, show a message
+            if (!hasUpcoming && upcomingGrid) {
+                upcomingGrid.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No upcoming events at this time. Check back soon!</p>';
+            }
+        }
+
+        // Run on page load
+        manageEvents();
     </script>
 </body>
 </html>
